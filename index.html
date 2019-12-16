@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+
+    <!-- Link to Font Awesome -->
+    <script src="https://kit.fontawesome.com/49afbd774f.js" crossorigin="anonymous"></script>
+
+    <!-- Link to CSS Stylesheets  -->
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+    
+    <header>
+        <input id = "item" type="text" placeholder="Add a quick note here!">
+        <button id ="addItem" type="submit" class = "addItem"></button>
+        <i class="fas fa-plus"></i>
+    </header>
+
+
+    <main>
+        <ul id = "toDoList">
+            <li>I'm a sample to do list item <button class="edit">Edit</button><button class="complete">Check</button> <button class = "trash">Trash</button></li>
+        </ul>
+    </main>
+
+    <footer>
+        <h1 class = "greeting">Welcome, Nick! Today's date is <span id = "datetime"></span></h1>
+        <div class="clock">
+            <div class="number number1 ">1</div>
+            <div class="number number2">2</div>
+            <div class="number number3">3</div>
+            <div class="number number4">4</div>
+            <div class="number number5">5</div>
+            <div class="number number6">6</div>
+            <div class="number number7">7</div>
+            <div class="number number8">8</div>
+            <div class="number number9">9</div>
+            <div class="number number10">10</div>
+            <div class="number number11">11</div>
+            <div class="number number12">12</div>
+            <div class="hand minute-hand" data-minute-hand></div>
+            <div class="hand hour-hand" data-hour-hand></div>
+            <div class="hand seconds-hand" data-seconds-hand></div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
