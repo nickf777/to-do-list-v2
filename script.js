@@ -3,7 +3,38 @@
 let button = document.getElementById("addItem");
 let icon = document.getElementsByClassName("fa-plus")[0];
 
-// Edit Task Functionality
+
+// Input button styling
+icon.addEventListener("mouseover", function() {
+    button.style.backgroundColor = "black"
+    icon.style.color = "white";
+})
+
+icon.addEventListener("mouseout", function() {
+    button.style.backgroundColor = "white";
+    icon.style.color = "black";
+})
+
+button.addEventListener("mouseover", function() {
+    button.style.backgroundColor = "black"
+    icon.style.color = "white";
+})
+
+button.addEventListener("mouseout", function() {
+    button.style.backgroundColor = "white";
+    icon.style.color = "black";
+})
+
+// Edit, Complete, and Delete Task Functionality
+
+function completeTask() {
+    this.parentElement.style.textDecoration = "line-through";
+    this.parentElement.style.opacity = "0.3"
+}
+
+function deleteTask() {
+    this.parentElement.remove();
+}
 
 function editTask() {
     let parent = this.parentElement;
@@ -14,7 +45,6 @@ function editTask() {
         alert("Please input a task!");
     }
     
-    // This is redundant code and should be placed in its own function
     let edit = document.createElement("button");
     edit.classList.add("edit");
     edit.innerText = "Edit";
@@ -24,17 +54,17 @@ function editTask() {
     let complete = document.createElement("button");
     complete.classList.add("complete");
     complete.innerText = "Check";
+    complete.addEventListener("click", completeTask)
     parent.appendChild(complete);
 
     let trash = document.createElement("button");
     trash.classList.add("trash");
     trash.innerText = "Trash";
+    trash.addEventListener("click", deleteTask);
     parent.appendChild(trash)
 }
 
-function completeTask() {
-    
-}
+
 
 // Input functionality
 
@@ -52,11 +82,13 @@ function addItemTodo(text) {
     let complete = document.createElement("button");
     complete.classList.add("complete");
     complete.innerText = "Check";
+    complete.addEventListener("click", completeTask)
     item.appendChild(complete);
 
     let trash = document.createElement("button");
     trash.classList.add("trash");
     trash.innerText = "Trash";
+    trash.addEventListener("click", deleteTask);
     item.appendChild(trash)
 
 
