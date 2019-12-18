@@ -22,14 +22,11 @@ button {
     font-family: inherit;
     border: 0;
     padding: 0;
+    cursor: pointer;
 }
 
-
-button:active {
-    transform: scale(1.05);
-    transition-property: all;
-    transition-duration: 0.3s;
-    transition-timing-function: linear;
+i {
+    cursor: pointer;
 }
 
 
@@ -79,6 +76,31 @@ header input {
     font-size: 3rem;
 }
 
+/* List Display Buttons */
+
+    .flex-container {
+        display: flex;
+    }
+
+
+    .flex-container button {
+        width: 50%;
+        height: 50px;
+        border: 1px solid black;
+        font-size: 2.5rem;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .displayToDo {
+        background: linear-gradient(to right, rgb(39, 169, 253), rgb(25, 203, 207) );
+    }
+
+    .displayCompleted {
+        background: #fff;
+    }
+    
+
 /* Main Styles */
 
 main {
@@ -87,9 +109,10 @@ main {
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow: auto;
 }
 
-ul {
+#toDoList {
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -123,20 +146,56 @@ li button {
 
 li .complete {
     position: absolute;
-    right: 62px;
+    right: 50px;
     bottom: 0;
+    width: 50px;
+    color:green;
+    font-size: 3rem;
 }
 
 li .trash {
     position: absolute;
     right: 0;
     bottom: 0;
+    width: 50px;
+    color: red;
+    font-size: 3rem;
 }
 
 li .edit {
     position: absolute;
-    right: 131px;
+    right: 100px;
     bottom: 0;
+    width: 50px;
+    color: blue;
+    font-size: 3rem;
+    border-left: 2px solid black;
+}
+
+#completedList {
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding-left: 0;
+    margin-top: 0;
+    display: none;
+}
+
+.completedList li {
+    font-size: 2rem;
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    position: relative;
+    left: 0;
+    right: 0;
+    background: #E7E0C5;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: line-through;
+    opacity: 0.3;
 }
 
 

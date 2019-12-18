@@ -3,6 +3,13 @@
 let button = document.getElementById("addItem");
 let icon = document.getElementsByClassName("fa-plus")[0];
 
+// Counter Functionality
+
+function countToDo() {
+    let counter = document.getElementById("toDoCounter");
+    let toDoList = document.getElementById("toDoList");
+    counter.innerHTML = "(" + toDoList.childElementCount + ")";
+}
 
 // Input button styling
 icon.addEventListener("mouseover", function() {
@@ -28,12 +35,17 @@ button.addEventListener("mouseout", function() {
 // Edit, Complete, and Delete Task Functionality
 
 function completeTask() {
-    this.parentElement.style.textDecoration = "line-through";
-    this.parentElement.style.opacity = "0.3"
+    let completedList = document.getElementById("completedList");  
+    let toDoList = document.getElementById("toDoList");
+    let item = this.parentElement;
+    toDoList.removeChild(item);
+    completedList.appendChild(item);
+    countToDo()
 }
 
 function deleteTask() {
     this.parentElement.remove();
+    countToDo()
 }
 
 function editTask() {
@@ -47,19 +59,19 @@ function editTask() {
     
     let edit = document.createElement("button");
     edit.classList.add("edit");
-    edit.innerText = "Edit";
+    edit.innerHTML = '<i class="far fa-edit"></i>'
     edit.addEventListener("click", editTask);
     parent.appendChild(edit);
 
     let complete = document.createElement("button");
     complete.classList.add("complete");
-    complete.innerText = "Check";
+    complete.innerHTML = '<i class="fas fa-check-square"></i>'
     complete.addEventListener("click", completeTask)
     parent.appendChild(complete);
 
     let trash = document.createElement("button");
     trash.classList.add("trash");
-    trash.innerText = "Trash";
+    trash.innerHTML = '<i class="far fa-trash-alt"></i>'
     trash.addEventListener("click", deleteTask);
     parent.appendChild(trash)
 }
@@ -75,19 +87,19 @@ function addItemTodo(text) {
 
     let edit = document.createElement("button");
     edit.classList.add("edit");
-    edit.innerText = "Edit";
+    edit.innerHTML = '<i class="far fa-edit"></i>';
     edit.addEventListener("click", editTask);
     item.appendChild(edit);
 
     let complete = document.createElement("button");
     complete.classList.add("complete");
-    complete.innerText = "Check";
+    complete.innerHTML = '<i class="fas fa-check-square"></i>'
     complete.addEventListener("click", completeTask)
     item.appendChild(complete);
 
     let trash = document.createElement("button");
     trash.classList.add("trash");
-    trash.innerText = "Trash";
+    trash.innerHTML = '<i class="far fa-trash-alt"></i>'
     trash.addEventListener("click", deleteTask);
     item.appendChild(trash)
 
@@ -101,6 +113,7 @@ function inputTask() {
     let value = document.getElementById("item").value;
     if (value) {
         addItemTodo(value);
+        countToDo()
     } else {
         alert("Please input a task!")
     }
@@ -112,6 +125,34 @@ icon.addEventListener("click", inputTask);
 
 
 
+
+// Completed list functionality
+
+
+let completedList = document.getElementById("completedList");
+let toDoList = document.getElementById("toDoList");
+
+function changeListDisplay() {
+    if (completedList.style.display === "none") {
+        completedList.style.display = "flex"
+        toDoList.style.display = "none"
+        document.getElementById("displayCompleted").style.background = "linear-gradient(to right, rgb(39, 169, 253), rgb(25, 203, 207) )"
+        document.getElementById("displayToDo").style.background = "#fff"
+        document.getElementById("displayCompleted").removeEventListener("click", changeListDisplay);
+        document.getElementById("displayToDo").addEventListener("click", changeListDisplay);
+    } else {
+        completedList.style.display = "none"
+        toDoList.style.display = "flex"
+        document.getElementById("displayToDo").style.background = "linear-gradient(to right, rgb(39, 169, 253), rgb(25, 203, 207) )"
+        document.getElementById("displayCompleted").style.background = "#fff"
+        document.getElementById("displayToDo").removeEventListener("click", changeListDisplay);
+        document.getElementById("displayCompleted").addEventListener("click", changeListDisplay);
+    }   
+}
+
+document.getElementById("displayToDo").addEventListener("click", changeListDisplay);
+document.getElementById("displayCompleted").addEventListener("click", changeListDisplay);
+
 // Set and format the time in the footer
 
 function setTime() {
@@ -120,7 +161,7 @@ function setTime() {
     document.getElementById("datetime").innerHTML = formattedDate;
 }
 
-setInterval(setTime, 1000)
+setInterval(setTime, 1000);
 
 // Clock Functionality
 
